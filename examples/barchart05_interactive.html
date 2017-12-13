@@ -107,9 +107,7 @@
 
   //interactivity
   d3.select('#filter-us-only').on('change', function() {
-    // This will be triggered when the user selects or unselects the checkbox
-    const checked = d3.select(this).property('checked');
-
+    update(this.checked ? data.filter(d => d.location.country === 'US') : data)
   });
 
   </script>

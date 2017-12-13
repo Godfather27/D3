@@ -45,23 +45,29 @@
   const bar_height = 50;
 
   /////////////////////////
-  // TODO bind our data items to rects in our group `g`
-  // such that
-  // height = bar_height
-  // width = d*7
-  // y = i*(bar_height+5)
+  // bind our data items to rects in our group `g`
+    // const rects = g.selectAll('cart').data(data);
+  const rects = g.selectAll('.barchart').data(data);
 
-  // Render the chart with new data
+  // enter phase
+      // const rects_enter = rects.enter().append('rect');
+  const rects_enter = rects.enter().append('rect').classed('.barchart', true);
 
-  // DATA JOIN
+    // set constants
+    rects_enter.attr('x', 0);
+    rects_enter.attr('height', bar_height);
 
-  // ENTER
-  // new elements
+  // update phase
+  const rects_update = rects;
+  const rects_update_and_enter = rects_update.merge(rects_enter);
 
-  // ENTER + UPDATE
-  // both old and new elements
+    // set values per element
+    rects_update_and_enter.attr('width', (d,i) => d * 7);
+    rects_update_and_enter.attr('y', (d,i) => i * (bar_height + 5));
 
-  // EXIT
+  // exit phase
+  const rects_exit = rects.exit();
+  rects_exit.remove();
   </script>
 </body>
 </html>
